@@ -88,7 +88,7 @@ export default function Welcome({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPass')}>
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
 

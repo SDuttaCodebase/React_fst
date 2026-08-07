@@ -63,7 +63,7 @@ export default function SignUp({ navigation }) {
 
       <View style={styles.inputContainer}>
         <Image
-          source={require('../../Assets/Image/User.png')}
+          source={require('../../Assets/Image/user.png')}
           style={styles.smallIcon}
         />
 
