@@ -10,7 +10,7 @@ export default function Launch({ navigation }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('SignIn');
+      navigation.replace('ChooseProduct');
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -23,10 +23,6 @@ export default function Launch({ navigation }) {
         source={require('../../Assets/Image/stylish.png')}
         style={styles.logo}
       />
-      {/* <Text style={{ fontSize: 22, color: 'black' }}>
-        Launch Screen
-      </Text> */}
-
     </View>
   );
 }
