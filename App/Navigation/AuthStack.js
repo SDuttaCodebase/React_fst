@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Launch from '../Screens/Auth/Launch';
+import Launch from '../Screens/Auth/launch';
 import SignIn from '../Screens/Auth/SignIn';
 import SignUp from '../Screens/Auth/SignUp';
 
