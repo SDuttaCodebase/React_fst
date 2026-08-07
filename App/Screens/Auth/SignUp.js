@@ -51,7 +51,7 @@ export default function SignUp({ navigation }) {
 
       alert('Account Created Successfully!');
 
-      navigation.replace('ChooseProduct');
+      navigation.replace('GetStarted');
     }, 1800);
   };
 

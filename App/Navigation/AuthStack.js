@@ -7,6 +7,7 @@ import MakePayment from '../Screens/Home/make_payment';
 import GetOrder from '../Screens/Home/get_order';
 import Welcome from '../Screens/Auth/welcome';
 import ForgotPass from '../Screens/Auth/forgot_pass';
+import GetStarted from '../Screens/Home/get_started';
 import SignIn from '../Screens/Auth/SignIn';
 import SignUp from '../Screens/Auth/SignUp';
 
@@ -43,6 +44,12 @@ export default function AuthStack() {
       <Stack.Screen
         name="ForgotPass"
         component={ForgotPass}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="GetStarted"
+        component={GetStarted}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
