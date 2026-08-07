@@ -9,26 +9,16 @@ import {
 } from 'react-native';
 
 export default function MakePayment({ navigation }) {
-
   return (
     <SafeAreaView style={styles.container}>
-
       {/* Top */}
 
       <View style={styles.topContainer}>
+        <Text style={styles.pageNumber}>2/3</Text>
 
-        <Text style={styles.pageNumber}>
-          2/3
-        </Text>
-
-        <TouchableOpacity
-          onPress={() => navigation.replace('SignIn')}
-        >
-          <Text style={styles.skip}>
-            Skip
-          </Text>
+        <TouchableOpacity onPress={() => navigation.replace('ChooseProduct')}>
+          <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Image */}
@@ -40,9 +30,7 @@ export default function MakePayment({ navigation }) {
 
       {/* Title */}
 
-      <Text style={styles.title}>
-        Make Payment
-      </Text>
+      <Text style={styles.title}>Make Payment</Text>
 
       {/* Description */}
 
@@ -54,55 +42,38 @@ export default function MakePayment({ navigation }) {
         sit aliqua dolor do amet sint. Velit officia
       </Text>
 
-      <Text style={styles.description}>
-        consequat duis enim velit mollit.
-      </Text>
+      <Text style={styles.description}>consequat duis enim velit mollit.</Text>
 
       {/* Bottom */}
 
       <View style={styles.bottomContainer}>
-
         {/* Previous */}
 
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.prev}>
-            Prev
-          </Text>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.prev}>Prev</Text>
         </TouchableOpacity>
 
         {/* Dots */}
 
         <View style={styles.dots}>
-
           <View style={styles.dot} />
 
           <View style={styles.activeDot} />
 
           <View style={styles.dot} />
-
         </View>
 
         {/* Next */}
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('GetOrder')}
-        >
-          <Text style={styles.next}>
-            Next
-          </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('GetOrder')}>
+          <Text style={styles.next}>Next</Text>
         </TouchableOpacity>
-
       </View>
-
     </SafeAreaView>
   );
-
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -194,5 +165,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F83758',
   },
-
 });
