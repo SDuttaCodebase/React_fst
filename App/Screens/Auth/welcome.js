@@ -40,7 +40,7 @@ export default function Welcome({ navigation }) {
     setTimeout(() => {
       setLoading(false);
 
-      navigation.replace('chooseProduct');
+      navigation.replace('ChooseProduct');
     }, 1800);
   };
 
