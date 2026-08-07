@@ -87,7 +87,7 @@ export default function GetOrder({ navigation }) {
         {/* Get Started */}
 
         <TouchableOpacity
-          onPress={() => navigation.replace('SignIn')}
+          onPress={() => navigation.replace('Welcome')}
         >
           <Text style={styles.getStarted}>
             Get Started

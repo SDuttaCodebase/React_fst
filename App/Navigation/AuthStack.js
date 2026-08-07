@@ -5,6 +5,7 @@ import Launch from '../Screens/Auth/launch';
 import ChooseProduct from '../Screens/Home/choose_product';
 import MakePayment from '../Screens/Home/make_payment';
 import GetOrder from '../Screens/Home/get_order';
+import Welcome from '../Screens/Auth/welcome';
 import SignIn from '../Screens/Auth/SignIn';
 import SignUp from '../Screens/Auth/SignUp';
 
@@ -25,6 +26,8 @@ export default function AuthStack() {
       <Stack.Screen name="MakePayment" component={MakePayment} />
 
       <Stack.Screen name="GetOrder" component={GetOrder} />
+
+      <Stack.Screen name="Welcome" component={Welcome} />
 
       <Stack.Screen name="SignIn" component={SignIn} />
 
