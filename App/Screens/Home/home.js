@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import BottomTab from './bottom_tab';
 
 import {
   View,
@@ -370,6 +371,7 @@ export default function Home({ navigation }) {
           </View>
         }
       />
+       <BottomTab navigation={navigation} />
     </View>
   );
 }
@@ -385,7 +387,7 @@ const styles = StyleSheet.create({
   },
 
   listContent: {
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
 
   // ===================================================
