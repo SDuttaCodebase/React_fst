@@ -1,453 +1,585 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    StatusBar,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
+  FlatList,
 } from 'react-native';
 
 import { FlashList } from '@shopify/flash-list';
 
+// =====================================================
+// CATEGORIES
+// =====================================================
+
 const categories = [
-    {
-        id: '1',
-        name: 'Beauty',
-        image: require('../../Assets/Image/home_img/beauty.png'),
-    },
-    {
-        id: '2',
-        name: 'Fashion',
-        image: require('../../Assets/Image/home_img/fashion.png'),
-    },
-    {
-        id: '3',
-        name: 'Kids',
-        image: require('../../Assets/Image/home_img/kids.png'),
-    },
-    {
-        id: '4',
-        name: 'Mens',
-        image: require('../../Assets/Image/home_img/men.png'),
-    },
-    {
-        id: '5',
-        name: 'Womens',
-        image: require('../../Assets/Image/home_img/women.png'),
-    },
-    {
-        id: '6',
-        name: 'Gift',
-        image: require('../../Assets/Image/home_img/gift.png'),
-    },
+  {
+    id: '1',
+    name: 'Beauty',
+    image: require('../../Assets/Image/home_img/beauty.png'),
+  },
+  {
+    id: '2',
+    name: 'Fashion',
+    image: require('../../Assets/Image/home_img/fashion.png'),
+  },
+  {
+    id: '3',
+    name: 'Kids',
+    image: require('../../Assets/Image/home_img/kids.png'),
+  },
+  {
+    id: '4',
+    name: 'Mens',
+    image: require('../../Assets/Image/home_img/men.png'),
+  },
+  {
+    id: '5',
+    name: 'Womens',
+    image: require('../../Assets/Image/home_img/women.png'),
+  },
+  {
+    id: '6',
+    name: 'Gift',
+    image: require('../../Assets/Image/home_img/gift.png'),
+  },
 ];
 
+// =====================================================
+// DISCOUNT BANNERS
+// Add more objects here whenever you want more banners
+// =====================================================
+
+const discountBanners = [
+  {
+    id: '1',
+    image: require('../../Assets/Image/home_img/discount.png'),
+  },
+  {
+    id: '2',
+    image: require('../../Assets/Image/home_img/discount.png'),
+  },
+  {
+    id: '3',
+    image: require('../../Assets/Image/home_img/discount.png'),
+  },
+];
+
+// =====================================================
+// HOME
+// =====================================================
+
 export default function Home({ navigation }) {
+  const [activeBanner, setActiveBanner] = useState(0);
 
-    return (
-        <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-            <StatusBar
-                backgroundColor="#FFFFFF"
-                barStyle="dark-content"
-            />
+      <FlashList
+        data={[]}
+        renderItem={null}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.listContent}
+        ListHeaderComponent={
+          <View>
+            {/* ================================================= */}
+            {/* HEADER */}
+            {/* ================================================= */}
 
-            <FlashList
-                data={[]}
-                renderItem={null}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.listContent}
+            <View style={styles.header}>
+              {/* MENU */}
 
-                ListHeaderComponent={
+              <TouchableOpacity style={styles.iconButton} activeOpacity={0.7}>
+                <Image
+                  source={require('../../Assets/Image/home_img/drawer.png')}
+                  style={styles.drawerIcon}
+                />
+              </TouchableOpacity>
 
-                    <View>
+              {/* LOGO */}
 
-                        {/* ================= HEADER ================= */}
+              <View style={styles.logoContainer}>
+                <Image
+                  source={require('../../Assets/Image/stylish.png')}
+                  style={styles.logo}
+                />
+              </View>
 
-                        <View style={styles.header}>
+              {/* PROFILE */}
 
-                            {/* Menu */}
+              <TouchableOpacity
+                style={styles.profileButton}
+                activeOpacity={0.7}
+              >
+                <Image
+                  source={require('../../Assets/Image/home_img/profile.png')}
+                  style={styles.profile}
+                />
+              </TouchableOpacity>
+            </View>
 
-                            <TouchableOpacity
-                                style={styles.iconButton}
-                                activeOpacity={0.7}
-                            >
-                                <Image
-                                    source={require('../../Assets/Image/home_img/drawer.png')}
-                                    style={styles.drawerIcon}
-                                />
-                            </TouchableOpacity>
+            {/* ================================================= */}
+            {/* SEARCH BAR */}
+            {/* ================================================= */}
 
+            <View style={styles.searchContainer}>
+              <Image
+                source={require('../../Assets/Image/home_img/search.png')}
+                style={styles.searchIcon}
+              />
 
-                            {/* Stylish Logo */}
+              <TextInput
+                placeholder="Search any Product.."
+                placeholderTextColor="#A5A5A5"
+                style={styles.searchInput}
+              />
 
-                            <View style={styles.logoContainer}>
+              <Image
+                source={require('../../Assets/Image/home_img/mic.png')}
+                style={styles.micIcon}
+              />
+            </View>
 
-                                <Image
-                                    source={require('../../Assets/Image/stylish.png')}
-                                    style={styles.logo}
-                                />
+            {/* ================================================= */}
+            {/* FEATURED HEADER */}
+            {/* ================================================= */}
 
-                            </View>
+            <View style={styles.featuredHeader}>
+              <Text style={styles.featuredTitle}>All Featured</Text>
 
+              <View style={styles.actionContainer}>
+                {/* SORT */}
 
-                            {/* Profile */}
+                <TouchableOpacity
+                  style={styles.actionButton}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.actionText}>Sort</Text>
 
-                            <TouchableOpacity
-                                style={styles.profileButton}
-                                activeOpacity={0.7}
-                            >
+                  <Image
+                    source={require('../../Assets/Image/home_img/sort.png')}
+                    style={styles.actionIcon}
+                  />
+                </TouchableOpacity>
 
-                                <Image
-                                    source={require('../../Assets/Image/home_img/profile.png')}
-                                    style={styles.profile}
-                                />
+                {/* FILTER */}
 
-                            </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.actionButton}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.actionText}>Filter</Text>
 
-                        </View>
+                  <Image
+                    source={require('../../Assets/Image/home_img/filter.png')}
+                    style={styles.actionIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
 
+            {/* ================================================= */}
+            {/* HORIZONTAL CATEGORIES */}
+            {/* ================================================= */}
 
-                        {/* ================= SEARCH BAR ================= */}
-
-                        <View style={styles.searchContainer}>
-
-                            <Image
-                                source={require('../../Assets/Image/home_img/search.png')}
-                                style={styles.searchIcon}
-                            />
-
-                            <TextInput
-                                placeholder="Search any Product.."
-                                placeholderTextColor="#A5A5A5"
-                                style={styles.searchInput}
-                            />
-
-                            <Image
-                                source={require('../../Assets/Image/home_img/mic.png')}
-                                style={styles.micIcon}
-                            />
-
-                        </View>
-
-
-                        {/* ================= FEATURED HEADER ================= */}
-
-                        <View style={styles.featuredHeader}>
-
-                            <Text style={styles.featuredTitle}>
-                                All Featured
-                            </Text>
-
-                            <View style={styles.actionContainer}>
-
-                                {/* Sort */}
-
-                                <TouchableOpacity
-                                    style={styles.actionButton}
-                                    activeOpacity={0.7}
-                                >
-
-                                    <Text style={styles.actionText}>
-                                        Sort
-                                    </Text>
-
-                                    <Image
-                                        source={require('../../Assets/Image/home_img/sort.png')}
-                                        style={styles.actionIcon}
-                                    />
-
-                                </TouchableOpacity>
-
-
-                                {/* Filter */}
-
-                                <TouchableOpacity
-                                    style={styles.actionButton}
-                                    activeOpacity={0.7}
-                                >
-
-                                    <Text style={styles.actionText}>
-                                        Filter
-                                    </Text>
-
-                                    <Image
-                                        source={require('../../Assets/Image/home_img/filter.png')}
-                                        style={styles.actionIcon}
-                                    />
-
-                                </TouchableOpacity>
-
-                            </View>
-
-                        </View>
-
-
-                        {/* ================= CATEGORIES ================= */}
-
-                        <View style={styles.categoryContainer}>
-
-                            <FlashList
-                                data={categories}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                estimatedItemSize={72}
-
-                                keyExtractor={(item) => item.id}
-
-                                renderItem={({ item }) => (
-
-                                    <TouchableOpacity
-                                        style={styles.categoryItem}
-                                        activeOpacity={0.8}
-                                    >
-
-                                        <View style={styles.categoryImageWrapper}>
-
-                                            <Image
-                                                source={item.image}
-                                                style={styles.categoryImage}
-                                            />
-
-                                        </View>
-
-                                        <Text
-                                            style={styles.categoryName}
-                                            numberOfLines={1}
-                                        >
-                                            {item.name}
-                                        </Text>
-
-                                    </TouchableOpacity>
-
-                                )}
-
-                            />
-
-                        </View>
-
+            <View style={styles.categoryContainer}>
+              <FlatList
+                data={categories}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                contentContainerStyle={{
+                  paddingRight: 20,
+                }}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.categoryItem}
+                    activeOpacity={0.8}
+                  >
+                    <View style={styles.categoryImageWrapper}>
+                      <Image source={item.image} style={styles.categoryImage} />
                     </View>
-                }
 
-            />
+                    <Text style={styles.categoryName} numberOfLines={1}>
+                      {item.name}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
 
-        </View>
-    );
+            {/* ================================================= */}
+            {/* DISCOUNT BANNER */}
+            {/* ================================================= */}
+
+            <View style={styles.bannerSection}>
+              <FlatList
+                data={discountBanners}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.id}
+                onMomentumScrollEnd={event => {
+                  const slideWidth = event.nativeEvent.layoutMeasurement.width;
+
+                  const currentIndex = Math.round(
+                    event.nativeEvent.contentOffset.x / slideWidth,
+                  );
+
+                  setActiveBanner(currentIndex);
+                }}
+                renderItem={({ item }) => (
+                  <View style={styles.bannerSlide}>
+                    <Image
+                      source={item.image}
+                      style={styles.discountBanner}
+                      resizeMode="cover"
+                    />
+                  </View>
+                )}
+              />
+
+              {/* ================================================= */}
+              {/* PAGINATION DOTS */}
+              {/* ================================================= */}
+
+              <View style={styles.pagination}>
+                {discountBanners.map((item, index) => (
+                  <View
+                    key={item.id}
+                    style={[
+                      styles.dot,
+                      index === activeBanner && styles.activeDot,
+                    ]}
+                  />
+                ))}
+              </View>
+            </View>
+          </View>
+        }
+      />
+    </View>
+  );
 }
 
+// =====================================================
+// STYLES
+// =====================================================
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
 
-    container: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
+  listContent: {
+    paddingBottom: 40,
+  },
+
+  // ===================================================
+  // HEADER
+  // ===================================================
+
+  header: {
+    height: 75,
+
+    paddingHorizontal: 20,
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    justifyContent: 'space-between',
+  },
+
+  iconButton: {
+    width: 42,
+    height: 42,
+
+    borderRadius: 21,
+
+    backgroundColor: '#F5F5F5',
+
+    justifyContent: 'center',
+
+    alignItems: 'center',
+  },
+
+  drawerIcon: {
+    width: 22,
+    height: 22,
+
+    resizeMode: 'contain',
+  },
+
+  logoContainer: {
+    flex: 1,
+
+    alignItems: 'center',
+
+    justifyContent: 'center',
+  },
+
+  logo: {
+    width: 110,
+    height: 45,
+
+    resizeMode: 'contain',
+  },
+
+  profileButton: {
+    width: 42,
+    height: 42,
+
+    borderRadius: 21,
+
+    overflow: 'hidden',
+
+    justifyContent: 'center',
+
+    alignItems: 'center',
+  },
+
+  profile: {
+    width: 42,
+    height: 42,
+
+    resizeMode: 'cover',
+  },
+
+  // ===================================================
+  // SEARCH
+  // ===================================================
+
+  searchContainer: {
+    height: 50,
+
+    marginHorizontal: 20,
+
+    marginTop: 8,
+
+    borderRadius: 10,
+
+    backgroundColor: '#F7F7F7',
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    paddingHorizontal: 14,
+  },
+
+  searchIcon: {
+    width: 20,
+    height: 20,
+
+    resizeMode: 'contain',
+  },
+
+  searchInput: {
+    flex: 1,
+
+    height: 50,
+
+    marginLeft: 10,
+
+    fontSize: 13,
+
+    color: '#222222',
+
+    paddingVertical: 0,
+  },
+
+  micIcon: {
+    width: 19,
+    height: 19,
+
+    resizeMode: 'contain',
+  },
+
+  // ===================================================
+  // FEATURED
+  // ===================================================
+
+  featuredHeader: {
+    marginTop: 20,
+
+    paddingHorizontal: 20,
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    justifyContent: 'space-between',
+  },
+
+  featuredTitle: {
+    fontSize: 20,
+
+    fontWeight: '700',
+
+    color: '#111111',
+  },
+
+  actionContainer: {
+    flexDirection: 'row',
+
+    gap: 8,
+  },
+
+  actionButton: {
+    height: 34,
+
+    paddingHorizontal: 11,
+
+    borderRadius: 8,
+
+    backgroundColor: '#FFFFFF',
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    justifyContent: 'center',
+
+    shadowColor: '#000000',
+
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
 
-    listContent: {
-        paddingBottom: 30,
-    },
+    shadowOpacity: 0.08,
 
+    shadowRadius: 4,
 
-    // ================= HEADER =================
+    elevation: 3,
+  },
 
-    header: {
-        height: 72,
-        paddingHorizontal: 20,
+  actionText: {
+    fontSize: 12,
 
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
+    color: '#333333',
 
-    iconButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+    marginRight: 5,
+  },
 
-        backgroundColor: '#F5F5F5',
+  actionIcon: {
+    width: 16,
+    height: 16,
 
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    resizeMode: 'contain',
+  },
 
-    drawerIcon: {
-        width: 21,
-        height: 21,
-        resizeMode: 'contain',
-    },
+  // ===================================================
+  // CATEGORIES
+  // ===================================================
 
-    logoContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+  categoryContainer: {
+    marginTop: 14,
 
-    logo: {
-        width: 105,
-        height: 42,
-        resizeMode: 'contain',
-    },
+    paddingLeft: 20,
+  },
 
-    profileButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+  categoryItem: {
+    width: 65,
 
-        overflow: 'hidden',
+    marginRight: 15,
 
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    alignItems: 'center',
+  },
 
-    profile: {
-        width: 40,
-        height: 40,
-        resizeMode: 'cover',
-    },
+  categoryImageWrapper: {
+    width: 60,
 
+    height: 60,
 
-    // ================= SEARCH =================
+    borderRadius: 30,
 
-    searchContainer: {
-        height: 48,
+    overflow: 'hidden',
 
-        marginHorizontal: 20,
-        marginTop: 5,
+    backgroundColor: '#F2F2F2',
+  },
 
-        borderRadius: 8,
+  categoryImage: {
+    width: '100%',
 
-        backgroundColor: '#F7F7F7',
+    height: '100%',
 
-        flexDirection: 'row',
-        alignItems: 'center',
+    resizeMode: 'cover',
+  },
 
-        paddingHorizontal: 13,
-    },
+  categoryName: {
+    marginTop: 6,
 
-    searchIcon: {
-        width: 19,
-        height: 19,
-        resizeMode: 'contain',
-    },
+    fontSize: 10,
 
-    searchInput: {
-        flex: 1,
+    color: '#555555',
 
-        height: 48,
+    textAlign: 'center',
+  },
 
-        marginLeft: 9,
+  // ===================================================
+  // DISCOUNT BANNER
+  // ===================================================
 
-        fontSize: 13,
-        color: '#222',
+  bannerSection: {
+    marginTop: 22,
 
-        paddingVertical: 0,
-    },
+    width: '100%',
+  },
 
-    micIcon: {
-        width: 18,
-        height: 18,
-        resizeMode: 'contain',
-    },
+  bannerSlide: {
+    width: 360,
 
+    paddingHorizontal: 20,
+  },
 
-    // ================= FEATURED =================
+  discountBanner: {
+    width: '100%',
 
-    featuredHeader: {
-        marginTop: 17,
+    height: 150,
 
-        paddingHorizontal: 20,
+    borderRadius: 12,
+  },
 
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
+  // ===================================================
+  // PAGINATION
+  // ===================================================
 
-    featuredTitle: {
-        fontSize: 19,
-        fontWeight: '700',
-        color: '#111111',
-    },
+  pagination: {
+    flexDirection: 'row',
 
-    actionContainer: {
-        flexDirection: 'row',
-        gap: 8,
-    },
+    justifyContent: 'center',
 
-    actionButton: {
-        height: 31,
+    alignItems: 'center',
 
-        paddingHorizontal: 10,
+    marginTop: 10,
+  },
 
-        borderRadius: 7,
+  dot: {
+    width: 7,
 
-        backgroundColor: '#FFFFFF',
+    height: 7,
 
-        flexDirection: 'row',
-        alignItems: 'center',
+    borderRadius: 4,
 
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.08,
-        shadowRadius: 4,
+    backgroundColor: '#D8D8D8',
 
-        elevation: 3,
-    },
+    marginHorizontal: 4,
+  },
 
-    actionText: {
-        fontSize: 12,
-        color: '#333333',
-        marginRight: 4,
-    },
+  activeDot: {
+    width: 8,
 
-    actionIcon: {
-        width: 15,
-        height: 15,
-        resizeMode: 'contain',
-    },
+    height: 8,
 
-
-    // ================= CATEGORY =================
-
-    categoryContainer: {
-        marginTop: 12,
-        paddingLeft: 20,
-    },
-
-    categoryItem: {
-        width: 65,
-        marginRight: 14,
-        alignItems: 'center',
-    },
-
-    categoryImageWrapper: {
-        width: 58,
-        height: 58,
-
-        borderRadius: 29,
-
-        overflow: 'hidden',
-
-        backgroundColor: '#F2F2F2',
-    },
-
-    categoryImage: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-
-    categoryName: {
-        marginTop: 5,
-
-        fontSize: 10,
-        color: '#555555',
-
-        textAlign: 'center',
-    },
-
+    backgroundColor: '#FF3B5C',
+  },
 });
