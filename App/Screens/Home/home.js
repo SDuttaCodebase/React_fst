@@ -261,6 +261,36 @@ export default function Home({ navigation }) {
                 ))}
               </View>
             </View>
+            {/* ================================================= */}
+            {/* DEAL OF THE DAY */}
+            {/* ================================================= */}
+
+            <View style={styles.dealSection}>
+              <View style={styles.dealContent}>
+                {/* LEFT SIDE */}
+
+                <View style={styles.dealLeft}>
+                  <Text style={styles.dealTitle}>Deal of the Day</Text>
+
+                  <View style={styles.timerRow}>
+                    <Text style={styles.timerIcon}>⏱</Text>
+
+                    <Text style={styles.timerText}>22h 55m 20s remaining</Text>
+                  </View>
+                </View>
+
+                {/* VIEW ALL BUTTON */}
+
+                <TouchableOpacity
+                  style={styles.viewAllButton}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.viewAllText}>View all</Text>
+
+                  <Text style={styles.arrowText}>→</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         }
       />
@@ -581,5 +611,102 @@ const styles = StyleSheet.create({
     height: 8,
 
     backgroundColor: '#FF3B5C',
+  },
+
+  // ===================================================
+  // DEAL OF THE DAY
+  // ===================================================
+
+  dealSection: {
+    marginTop: 18,
+    marginHorizontal: 20,
+
+    height: 82,
+
+    borderRadius: 8,
+
+    backgroundColor: '#438DF4',
+
+    overflow: 'hidden',
+  },
+
+  dealContent: {
+    flex: 1,
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    justifyContent: 'space-between',
+
+    paddingHorizontal: 12,
+  },
+
+  dealLeft: {
+    flex: 1,
+  },
+
+  dealTitle: {
+    fontSize: 20,
+
+    fontWeight: '500',
+
+    color: '#FFFFFF',
+
+    marginBottom: 6,
+  },
+
+  timerRow: {
+    flexDirection: 'row',
+
+    alignItems: 'center',
+  },
+
+  timerIcon: {
+    fontSize: 16,
+
+    color: '#FFFFFF',
+
+    marginRight: 5,
+  },
+
+  timerText: {
+    fontSize: 13,
+
+    color: '#FFFFFF',
+  },
+
+  viewAllButton: {
+    height: 36,
+
+    paddingHorizontal: 12,
+
+    borderWidth: 1,
+
+    borderColor: '#FFFFFF',
+
+    borderRadius: 5,
+
+    flexDirection: 'row',
+
+    alignItems: 'center',
+
+    justifyContent: 'center',
+  },
+
+  viewAllText: {
+    fontSize: 12,
+
+    color: '#FFFFFF',
+
+    marginRight: 7,
+  },
+
+  arrowText: {
+    fontSize: 18,
+
+    color: '#FFFFFF',
+
+    lineHeight: 18,
   },
 });
