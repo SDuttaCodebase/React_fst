@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function BottomTab({ navigation }) {
+export default function BottomTab({ navigation, activeTab }) {
   return (
     <View style={styles.container}>
       {/* HOME */}
@@ -16,17 +16,27 @@ export default function BottomTab({ navigation }) {
           style={styles.icon}
         />
 
-        <Text style={styles.activeText}>Home</Text>
+        <Text style={activeTab === 'Home' ? styles.activeText : styles.text}>
+          Home
+        </Text>
       </TouchableOpacity>
 
       {/* WISHLIST */}
-      <TouchableOpacity style={styles.tab} activeOpacity={0.7}>
+      <TouchableOpacity
+        style={styles.tab}
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate('Wishlist')}
+      >
         <Image
           source={require('../../Assets/Image/home_img/heart.png')}
           style={styles.icon}
         />
 
-        <Text style={styles.text}>Wishlist</Text>
+        <Text
+          style={activeTab === 'Wishlist' ? styles.activeText : styles.text}
+        >
+          Wishlist
+        </Text>
       </TouchableOpacity>
 
       {/* CART */}

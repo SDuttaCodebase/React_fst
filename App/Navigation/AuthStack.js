@@ -16,6 +16,7 @@ import GetStarted from '../Screens/Home/get_started';
 
 // Home
 import Home from '../Screens/Home/home';
+import Wishlist from '../Screens/Home/wishlist';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,11 @@ export default function AuthStack() {
 
       <Stack.Screen name="Home" component={Home} />
 
+      <Stack.Screen
+        name="Wishlist"
+        component={Wishlist}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
