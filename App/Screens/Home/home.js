@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   View,
@@ -70,12 +70,33 @@ const discountBanners = [
   },
 ];
 
+const dealProducts = [
+  {
+    id: '1',
+    image: require('../../Assets/Image/home_img/product_1.png'),
+  },
+  {
+    id: '2',
+    image: require('../../Assets/Image/home_img/product_2.png'),
+  },
+  {
+    id: '3',
+    image: require('../../Assets/Image/home_img/product_1.png'),
+  },
+  {
+    id: '4',
+    image: require('../../Assets/Image/home_img/product_2.png'),
+  },
+];
+
 // =====================================================
 // HOME
 // =====================================================
 
 export default function Home({ navigation }) {
   const [activeBanner, setActiveBanner] = useState(0);
+  const productListRef = useRef(null);
+  const [productIndex, setProductIndex] = React.useState(0);
 
   return (
     <View style={styles.container}>
@@ -288,6 +309,61 @@ export default function Home({ navigation }) {
                   <Text style={styles.viewAllText}>View all</Text>
 
                   <Text style={styles.arrowText}>→</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* ================= DEAL PRODUCTS ================= */}
+
+            <View style={styles.productSection}>
+              <View style={styles.productCarouselWrapper}>
+                <FlatList
+                  ref={productListRef}
+                  data={dealProducts}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  keyExtractor={item => item.id}
+                  contentContainerStyle={styles.productListContent}
+                  getItemLayout={(data, index) => ({
+                    length: 228,
+                    offset: 228 * index,
+                    index,
+                  })}
+                  renderItem={({ item }) => (
+                    <View style={styles.productCard}>
+                      <Image
+                        source={item.image}
+                        style={styles.productImage}
+                        resizeMode="contain"
+                      />
+                    </View>
+                  )}
+                />
+
+                {/* NEXT ARROW */}
+
+                <TouchableOpacity
+                  style={styles.productNextButton}
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    const nextIndex =
+                      productIndex + 1 >= dealProducts.length
+                        ? 0
+                        : productIndex + 1;
+
+                    setProductIndex(nextIndex);
+
+                    productListRef.current?.scrollToIndex({
+                      index: nextIndex,
+                      animated: true,
+                    });
+                  }}
+                >
+                  <Image
+                    source={require('../../Assets/Image/home_img/side_arrow.png')}
+                    style={styles.productArrow}
+                    resizeMode="contain"
+                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -708,5 +784,81 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
 
     lineHeight: 18,
+  },
+
+  // ================= DEAL PRODUCTS =================
+
+  productSection: {
+    marginTop: 14,
+    paddingBottom: 10,
+  },
+
+  productCarouselWrapper: {
+    position: 'relative',
+  },
+
+  productListContent: {
+    paddingLeft: 20,
+    paddingRight: 40,
+  },
+
+  productCard: {
+    width: 214,
+    height: 305,
+
+    marginRight: 14,
+
+    borderRadius: 8,
+
+    backgroundColor: '#FFFFFF',
+
+    overflow: 'hidden',
+
+    elevation: 2,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+  },
+
+  productImage: {
+    width: '100%',
+    height: '100%',
+  },
+
+  productNextButton: {
+    position: 'absolute',
+
+    right: 8,
+    top: '42%',
+
+    width: 48,
+    height: 48,
+
+    borderRadius: 24,
+
+    backgroundColor: '#E0E0E0',
+
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    elevation: 4,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+  },
+
+  productArrow: {
+    width: 22,
+    height: 22,
   },
 });
