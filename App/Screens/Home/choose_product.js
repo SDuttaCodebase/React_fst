@@ -16,7 +16,7 @@ export default function ChooseProduct({ navigation }) {
       <View style={styles.topContainer}>
         <Text style={styles.pageNumber}>1/3</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.replace('GetStarted')}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
@@ -55,12 +55,8 @@ export default function ChooseProduct({ navigation }) {
           <View style={styles.dot} />
         </View>
 
-        <TouchableOpacity 
-            onPress={() => navigation.navigate('MakePayment')}
-        >
-          <Text style={styles.next}>
-            Next
-          </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('MakePayment')}>
+          <Text style={styles.next}>Next</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -22,7 +22,7 @@ export default function GetOrder({ navigation }) {
         </Text>
 
         <TouchableOpacity
-          onPress={() => navigation.replace('ChooseProduct')}
+          onPress={() => navigation.replace('GetStarted')}
         >
           <Text style={styles.skip}>
             Skip

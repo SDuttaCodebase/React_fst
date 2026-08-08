@@ -16,7 +16,7 @@ export default function MakePayment({ navigation }) {
       <View style={styles.topContainer}>
         <Text style={styles.pageNumber}>2/3</Text>
 
-        <TouchableOpacity onPress={() => navigation.replace('ChooseProduct')}>
+        <TouchableOpacity onPress={() => navigation.replace('GetStarted')}>
           <Text style={styles.skip}>Skip</Text>
         </TouchableOpacity>
       </View>
